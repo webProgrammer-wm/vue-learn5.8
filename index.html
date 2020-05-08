@@ -8,16 +8,20 @@
     </head>
     <body>
         <div id="app">
-            <div>{{msg}}</div>
+            <ul>
+                <li v-for="item in movies" :key="item">
+                    {{ item }}
+                </li>
+            </ul>
         </div>
-
 
         <script src="./js/vue.js"></script>
         <script>
             const app = new Vue({
                 el: '#app',
                 data: {
-                    msg: 'hello vue'
+                    msg: 'hello vue',
+                    movies: ['星际穿越', '大话西游', '调音师', '看不见的客人']
                 }
             })
         </script>
