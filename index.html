@@ -8,11 +8,9 @@
     </head>
     <body>
         <div id="app">
-            <ul>
-                <li v-for="item in movies" :key="item">
-                    {{ item }}
-                </li>
-            </ul>
+            <button @click="change('-')">-</button>
+            {{ num }}
+            <button @click="change('+')">+</button>
         </div>
 
         <script src="./js/vue.js"></script>
@@ -20,8 +18,16 @@
             const app = new Vue({
                 el: '#app',
                 data: {
-                    msg: 'hello vue',
-                    movies: ['星际穿越', '大话西游', '调音师', '看不见的客人']
+                    num: 1
+                },
+                methods: {
+                    change(func) {
+                        if (func === '-') {
+                            this.num -= 1
+                        } else if (func === '+') {
+                            this.num += 1
+                        }
+                    }
                 }
             })
         </script>
