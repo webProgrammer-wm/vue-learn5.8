@@ -7,29 +7,10 @@
         <title>Title</title>
     </head>
     <body>
-        <div id="app">
-            <button @click="change('-')">-</button>
-            {{ num }}
-            <button @click="change('+')">+</button>
-        </div>
-
         <script src="./js/vue.js"></script>
-        <script>
-            const app = new Vue({
-                el: '#app',
-                data: {
-                    num: 1
-                },
-                methods: {
-                    change(func) {
-                        if (func === '-') {
-                            this.num -= 1
-                        } else if (func === '+') {
-                            this.num += 1
-                        }
-                    }
-                }
-            })
-        </script>
+
+        <!-- 必须要加 type="module"才能正常使用ES6模块化 -->
+        <script src="moduleA.js" type="module"></script>
+        <script src="moduleB.js" type="module"></script>
     </body>
 </html>
