@@ -8,16 +8,16 @@
     </head>
     <body>
         <div id="app">
-            <!-- computed如果依赖的属性没有变化，那么会缓存下来，以供下次使用 -->
-            <!-- methods不会有缓存功能，使用一次则调用一次 -->
-            {{ fullName }}
-            {{ getFullName() }}
-
-            {{ fullName }}
-
-            {{ fullName }}
-            {{ getFullName() }}
-            {{ getFullName() }}
+            <!-- vue会尽可能复用已经存在的元素 -->
+            <div v-if="username">
+                <label for="username">用户名：</label>
+                <input type="text" key="usernama" id="username" placeholder="请输入用户名">
+            </div>
+            <div v-else>
+                <label for="email">邮箱：</label>
+                <input type="text" key="email" id="email" placeholder="请输入邮箱">
+            </div>
+            <button @click="toggle">切换</button>
         </div>
 
         <script src="./js/vue.js"></script>
@@ -25,19 +25,11 @@
             const app = new Vue({
                 el: '#app',
                 data: {
-                    firstName: 'Barry',
-                    lastName: 'Allen',
-                },
-                computed: {
-                    fullName() {
-                        console.log('computed')
-                        return this.firstName + ' ' + this.lastName
-                    }
+                    username: true
                 },
                 methods: {
-                    getFullName() {
-                        console.log('methods')
-                        return this.firstName + ' ' + this.lastName
+                    toggle() {
+                        this.username = !this.username
                     }
                 }
             })
