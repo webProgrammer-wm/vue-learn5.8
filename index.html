@@ -10,26 +10,21 @@
         <!-- 父组件模板 -->
         <div id="app">
             <cpn>
-                <button>1111</button>
+                <!-- 使用具名插槽 -->
+                <span slot="left">自定义的左边插槽</span>
+                <span slot="center">标题</span>
+                <span slot="right">自定义的右边插槽</span>
             </cpn>
 
-            <cpn>
-                <!-- 如果有多个值，同时放入到组件进行替换时，一起作为替换元素 -->
-                <i>1111</i>
-                <div>我是div<div>
-                <p>我是p</p>
-            </cpn>
         </div>
 
         <!-- 子组件模板 -->
         <template id="cpn">
             <div>
-                <h2>我是组件</h2>
-                <p>我是组件，哈哈哈</p>
-                <slot>
-                    <!-- 如果没有传入插槽，那么使用默认的插槽 -->
-                    <button>默认插槽</button>
-                </slot>
+                <!-- 定义具名插槽 -->
+                <slot name="left"><span>左边</span></slot>
+                <slot name="center"><span>中间</span></slot>
+                <slot name="right"><span>右边</span></slot>
             </div>
         </template>
 
