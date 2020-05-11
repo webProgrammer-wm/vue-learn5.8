@@ -9,59 +9,44 @@
     <body>
         <!-- 父组件模板 -->
         <div id="app">
-            <!-- 监听事件 -->
-            <cpn @item-click="itemClick"></cpn>
+            <cpn :number1="num1" :number2="num2"></cpn>
         </div>
 
         <!-- 子组件模板 -->
         <template id="cpn">
             <div>
-                <button v-for="item in categories" @click="btnClick(item)">{{ item.name }}</button>
+                <!-- 双向绑定不要把值绑定到props里 -->
+                <h2>{{ number1 }}</h2>
+                <h2>{{ dnumber1 }}</h2>
+                <input type="text" v-model="dnumber1">
+                <h2>{{ number2 }}</h2>
+                <h2>{{ dnumber2 }}</h2>
+                <input type="text" v-model="dnumber2">
             </div>
         </template>
 
         <script src="./js/vue.js"></script>
         <script>
-            const cpn = {
-                template: '#cpn',
-                data() {
-                    return {
-                        categories: [
-                            {
-                                id: 'aaa',
-                                name: '热门推荐'
-                            },
-                            {
-                                id: 'bbb',
-                                name: '手机数码'
-                            },
-                            {
-                                id: 'ccc',
-                                name: '家用家电'
-                            },
-                            {
-                                id: 'ddd',
-                                name: '电脑办公'
-                            }
-                        ]
-                    }
-                },
-                methods: {
-                    btnClick(item) {
-                        console.log(item)
-                        // 发射事件 - 自定义事件
-                        this.$emit('item-click', item)
-                    }
-                }
-            }
-
             const app = new Vue({
                 el: '#app',
                 data: {
-                    info: {a: '111'}
+                    num1: 1,
+                    num2: 0
                 },
                 components: {
-                    cpn
+                    cpn: {
+                        template: '#cpn',
+                        props: {
+                            number1: Number,
+                            number2: Number
+                        },
+                        data() {
+                            return {
+                                dnumber1: this.number1,
+                                dnumber2: this.number2
+                            }
+                        }
+                    }
                 },
                 methods: {
                     itemClick(item) {
